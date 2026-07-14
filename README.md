@@ -92,9 +92,9 @@ outputs). Layer 3 communicates (dashboard and role-specific reports).
                           confidence thresholds. The source of truth.
   verification-agent.md ← Agent role definition for Claude Code
   drift-run.md          ← Run procedure
-dashboard/
-  dashboard.jsx         ← React verification dashboard (score ring, findings,
-                          three report views)
+dashboard/              ← Deployable React dashboard (Vite)
+  src/DCDrift.jsx       ← score ring, dual-layer scores, findings, 3 report views
+  index.html · package.json · vite.config.js
 workflow/
   (n8n pipeline export — automated path: form/PR trigger → Figma API →
    dual-layer analysis → Google Docs / Slack / Jira routing)
@@ -128,6 +128,20 @@ connects what already works.
 - 🚧 **V3** — webhook bridge (n8n ⇄ Claude Code)
 - 📋 **V4** — Claude Code hooks: re-verify on component change, gate PRs
 - 📋 **V5** — Figma Code Connect + CI/CD: Drift Score on every UI pull request
+
+## Running the dashboard
+
+```bash
+cd dashboard
+npm install
+npm run dev      # local: http://localhost:5173
+npm run build    # production build in dist/
+```
+
+Deployed with Vercel (framework preset: Vite, root directory: `dashboard`).
+The dashboard renders the documented Run 2 verification data — structural
+72, visual 95, Δ23 — so the live demo and the run reports show the same
+numbers.
 
 ## Setup
 
